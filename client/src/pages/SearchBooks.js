@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
+import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
+import { SAVE_BOOK } from '../utils/mutations';
 import { saveBook, searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
 
@@ -43,6 +45,8 @@ const SearchBooks = () => {
         title: book.volumeInfo.title,
         description: book.volumeInfo.description,
         image: book.volumeInfo.imageLinks?.thumbnail || '',
+        pageCount: book.volumeInfo.pageCount,
+        publishedDate: book.volumeInfo.publishedDate
       }));
 
       setSearchedBooks(bookData);
@@ -121,6 +125,9 @@ const SearchBooks = () => {
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
                   <p className='small'>Authors: {book.authors}</p>
+                  <p>Page Count: {book.pageCount}</p>
+                  <p>Date Published: {book.publishedDate}</p>
+
                   <Card.Text>{book.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
