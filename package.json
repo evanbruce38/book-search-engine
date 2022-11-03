@@ -19,7 +19,10 @@
     "url": "https://github.com/evanbruce38/book-search-engine/issues"
   },
   "homepage": "https://github.com/evanbruce38/book-search-engine#readme",
-  "dependencies": {
+  "devDependencies": {
     "concurrently": "^7.5.0"
+  },
+  "dependencies": {
+    "apollo-server-express": "^3.11.1"
   }
 }
